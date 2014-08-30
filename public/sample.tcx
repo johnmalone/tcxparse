@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/ProfileExtension/v1 http://www.garmin.com/xmlschemas/UserProfilePowerExtensionv1.xsd http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd http://www.garmin.com/xmlschemas/UserProfile/v2 http://www.garmin.com/xmlschemas/UserProfileExtensionv2.xsd">
+  <Activities>
+    <Activity Sport="Biking">
+      <Id>2012-05-06T07:46:54Z</Id>
+      <Lap StartTime="2012-05-06T07:46:54Z">
+        <TotalTimeSeconds>1.34</TotalTimeSeconds>
+        <DistanceMeters>0.015949</DistanceMeters>
+        <MaximumSpeed>0.000000</MaximumSpeed>
+        <Calories>0</Calories>
+        <AverageHeartRateBpm>
+          <Value>99</Value>
+        </AverageHeartRateBpm>
+        <MaximumHeartRateBpm>
+          <Value>99</Value>
+        </MaximumHeartRateBpm>
+        <Intensity>Active</Intensity>
+        <TriggerMethod>Manual</TriggerMethod>
+        <Track>
+          <Trackpoint>
+            <Time>2012-05-06T07:46:55Z</Time>
+            <Position>
+              <LatitudeDegrees>54.278813</LatitudeDegrees>
+              <LongitudeDegrees>-8.464502</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>12.863</AltitudeMeters>
+            <DistanceMeters>0.016</DistanceMeters>
+            <HeartRateBpm>
+              <Value>99</Value>
+            </HeartRateBpm>
+          </Trackpoint>
+        </Track>
+      </Lap>
+      <Creator xsi:type="Device_t">
+        <Name>EDGE705</Name>
+        <UnitId>3467990641</UnitId>
+        <ProductID>625</ProductID>
+        <Version>
+          <VersionMajor>3</VersionMajor>
+          <VersionMinor>30</VersionMinor>
+          <BuildMajor>0</BuildMajor>
+          <BuildMinor>0</BuildMinor>
+        </Version>
+      </Creator>
+    </Activity>
+  </Activities>
+  <Author xsi:type="Application_t">
+    <Name>EDGE705</Name>
+    <Build>
+      <Version>
+        <VersionMajor>3</VersionMajor>
+        <VersionMinor>30</VersionMinor>
+        <BuildMajor>0</BuildMajor>
+        <BuildMinor>0</BuildMinor>
+      </Version>
+      <Type>Release</Type>
+    </Build>
+    <LangID>EN</LangID>
+    <PartNumber>006-B0625-00</PartNumber>
+  </Author>
+</TrainingCenterDatabase>
