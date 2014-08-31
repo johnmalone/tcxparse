@@ -9,8 +9,8 @@ class UploadController extends BaseController
 
 	public function doUpload()
 	{
-		$parseTCX = new ParseTCX(Input::file('file'));
-		$result = $parseTCX->saveActivityXML();
+		$parseTCX = new ParseTCX();
+		$result = $parseTCX->saveActivityXML(Input::file('file'));
 
 		if (! $result)
 			return View::make('upload')->withResult($result);

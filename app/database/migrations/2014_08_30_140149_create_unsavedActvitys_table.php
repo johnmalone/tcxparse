@@ -17,8 +17,9 @@ class CreateUnsavedActvitysTable extends Migration {
 			$table->increments('id');
 
 			$table->integer('user_id');
-			$table->string('activityXML');
-			
+			$table->longText('activityXML');
+			$table->integer('totalTrackPoints');
+			$table->integer('processedTrackPoints');
 			$table->softDeletes();
 			$table->timestamps();
 		});
