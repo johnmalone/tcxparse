@@ -15,9 +15,14 @@ class UnsavedActivity extends Eloquent {
 	 */
 	protected $table = 'unsavedActivitys';
 
-	protected $fillable = array('activityXML');
+	protected $fillable = array('activityXML', 'uploadParsing_id');
 	public function user()
 	{
 		return $this->belongsTo('User', 'user_id');
 	}
+	public function uploadParsing()
+	{
+		return $this->belongsTo('UploadParsing', 'uploadParsing_id');
+	}
+
 }

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Activity' => $baseDir . '/app/models/Activity.php',
     'ActivityTableSeeder' => $baseDir . '/app/database/seeds/ActivityTableSeeder.php',
+    'AddRelationshipToUnsavedActivities' => $baseDir . '/app/database/migrations/2014_08_31_144218_add_relationshipToUnsavedActivities.php',
     'AddUsertypeToUsersTable' => $baseDir . '/app/database/migrations/2014_08_30_090257_add_usertype_to_users_table.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
@@ -35,6 +36,7 @@ return array(
     'CreateLapsTable' => $baseDir . '/app/database/migrations/2014_08_30_114544_create_Laps_table.php',
     'CreateTrackpointsTable' => $baseDir . '/app/database/migrations/2014_08_30_120434_create_Trackpoints_table.php',
     'CreateUnsavedActvitysTable' => $baseDir . '/app/database/migrations/2014_08_30_140149_create_unsavedActvitys_table.php',
+    'CreateUploadParsingTable' => $baseDir . '/app/database/migrations/2014_08_31_141506_create_uploadParsing_table.php',
     'CreateUsersTable' => $baseDir . '/app/database/migrations/2014_08_24_123744_create_users_table.php',
     'Crypt_AES' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/AES.php',
     'Crypt_Base' => $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Base.php',
@@ -1618,6 +1620,7 @@ return array(
     'TrackpointTableSeeder' => $baseDir . '/app/database/seeds/TrackpointTableSeeder.php',
     'UnsavedActivity' => $baseDir . '/app/models/UnsavedActivity.php',
     'UploadController' => $baseDir . '/app/controllers/UploadController.php',
+    'UploadParsing' => $baseDir . '/app/models/UploadParsing.php',
     'User' => $baseDir . '/app/models/User.php',
     'UserTableSeeder' => $baseDir . '/app/database/seeds/UserTableSeeder.php',
     'Whoops\\Exception\\ErrorException' => $vendorDir . '/filp/whoops/src/Whoops/Exception/ErrorException.php',

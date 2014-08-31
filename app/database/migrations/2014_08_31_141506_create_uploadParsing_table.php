@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnsavedActvitysTable extends Migration {
+class CreateUploadParsingTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,16 +12,13 @@ class CreateUnsavedActvitysTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('unsavedActivitys', function(Blueprint $table)
+
+		Schema::create('uploadParsing', function(Blueprint $table)
 		{
 			$table->increments('id');
-
 			$table->integer('user_id');
-			$table->integer('uploadParsing_id');
-			$table->longText('activityXML');
-			$table->integer('totalTrackPoints');
-			$table->integer('processedTrackPoints');
-			$table->softDeletes();
+			$table->integer('completedActivitiesCount')->default(0);
+			$table->enum('allActivitiesInDb', array('y','n'))->default('n');
 			$table->timestamps();
 		});
 	}
@@ -33,8 +30,9 @@ class CreateUnsavedActvitysTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('unsavedActivitys');
+		Schema::drop('uploadParsing');
 	}
 
 
 }
+

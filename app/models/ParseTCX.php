@@ -11,9 +11,23 @@ class ParseTCX
 	public function saveActivityXML($tcxFile)
 	{
 		$reader = new XMLReader();
-		
-		if (! $reader->open($tcxFile))
+		try
+		{
+			if (! $reader->open($tcxFile))
+				return FALSE;
+		}
+		catch (Exception $e)
+		{
+			Log::debug('Exception thrown while reading tcxFile: ' . $e);
 			return FALSE;
+		}
+		
+		$uploadParsing = UploadParsing::create(array(
+			'completeActivitiesCount' => 0,
+			'allActivitiesInDb' => 'n',
+		));
+		Auth::user()->uploadParsing()->save($uploadParsing);
+		$uploadParsing_id = $uploadParsing->id;
 
 		while ($reader->read())
 		{
@@ -25,6 +39,7 @@ class ParseTCX
 
 				$unsavedActivity = UnsavedActivity::create(array(
 							'activityXML' => $activityXML,
+							'uploadParsing_id' => $uploadParsing_id,
 							));
 
 				Auth::user()->unsavedActivitys()->save($unsavedActivity);
@@ -33,6 +48,9 @@ class ParseTCX
 				Queue::push('ParseTCX', $data);
 			}
 		}
+
+		$uploadParsing->allActivitiesInDb = 'y';
+		$uploadParsing->save();
 
 		return TRUE;
 	}
@@ -115,6 +133,10 @@ class ParseTCX
 				}
 			}
 		}
+		
+		$uploadParsingEntry = UploadParsing::find($unsavedActivityEntry->uploadParsing_id);
+		$uploadParsingEntry->completedActivitiesCount++;
+		$uploadParsingEntry->save();
 
 		return TRUE;
 	}
