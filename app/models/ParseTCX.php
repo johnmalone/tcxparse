@@ -28,11 +28,13 @@ class ParseTCX
 		));
 		Auth::user()->uploadParsing()->save($uploadParsing);
 		$uploadParsing_id = $uploadParsing->id;
-
+		
+		$activityCount = 0;
 		while ($reader->read())
 		{
 			if ($reader->nodeType == XMLReader::ELEMENT and $reader->name == 'Activity')
 			{
+				$activityCount ++;
 				$activityXML = $reader->readOuterXML();
 				if (empty($activityXML))
 					return FALSE;
@@ -50,6 +52,7 @@ class ParseTCX
 		}
 
 		$uploadParsing->allActivitiesInDb = 'y';
+		$uploadParsing->totalActivitiesCount = $activityCount;
 		$uploadParsing->save();
 
 		return TRUE;
@@ -136,7 +139,11 @@ class ParseTCX
 		
 		$uploadParsingEntry = UploadParsing::find($unsavedActivityEntry->uploadParsing_id);
 		$uploadParsingEntry->completedActivitiesCount++;
-		$uploadParsingEntry->save();
+		
+		if ($uploadParsingEntry->completeActivitiesCount == $uploadParsingEntry->totalActivitiesCount)
+			$uploadParsingEntry->delete();
+		else
+			$uploadParsingEntry->save();
 
 		return TRUE;
 	}

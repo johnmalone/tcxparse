@@ -7,7 +7,7 @@ class HomeController extends BaseController
 		if (! Auth::check())
 			return View::make('home');
 		else
-			return View::make('homeLoggedIn');
+			return View::make('homeLoggedIn')->nest('progressBar', 'fragment.uploadProgressBar');
 	}
 	
 	public function showLogin()

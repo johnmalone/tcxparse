@@ -27,3 +27,4 @@ Route::get('user/{id}', function($userID)
 Route::get('upload', array('before' => 'auth', 'uses' => 'UploadController@showUpload'));
 Route::post('upload', array('before' => 'auth', 'uses' => 'UploadController@doUpload'));
 
+Route::get('uploadProgress', array('before' => 'auth', 'uses' => 'UploadController@getUploadProgress'));

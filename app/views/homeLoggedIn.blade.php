@@ -11,6 +11,9 @@
 </p>
 @endif
 
+
+<div class="pbarContainer"><div class="progressbar"></div></div>
+
 You're Logged In! 
 
 Fancy dashboard goes here

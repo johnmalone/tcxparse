@@ -12,6 +12,7 @@
     <!-- Bootstrap core CSS -->
     <link href="<?PHP echo asset('css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?PHP echo asset('css/navbar.css')?>" rel="stylesheet">
+    <link href="<?PHP echo asset('css/progressBar.css')?>" rel="stylesheet">
 
   </head>
 
@@ -73,6 +74,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="<?PHP echo asset('js/jquery-1.11.1.min.js');?>"></script>
     <script src="<?PHP echo asset('js/bootstrap.min.js');?>"></script>
+<?PHP
+	if (Auth::check())
+		echo '<script src="' . asset('js/progressBar.js') . '"></script>';
+?>
+	
   </body>
 </html>
 

@@ -17,6 +17,7 @@ class CreateUploadParsingTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->integer('totalActivitiesCount')->default(0);
 			$table->integer('completedActivitiesCount')->default(0);
 			$table->enum('allActivitiesInDb', array('y','n'))->default('n');
 			$table->timestamps();
