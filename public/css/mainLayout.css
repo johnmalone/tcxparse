@@ -103,3 +103,17 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.left-column{
+  width:40%;
+  float: left;
+}
+
+.right-column{
+  width:40%;
+  float: right;
+}
+
+.mapThumb {
+	height:256px;
+}

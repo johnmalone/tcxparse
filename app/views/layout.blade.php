@@ -14,6 +14,7 @@
     <link href="<?PHP echo asset('css/navbar.css')?>" rel="stylesheet">
     <link href="<?PHP echo asset('css/progressBar.css')?>" rel="stylesheet">
     <link href="<?PHP echo asset('css/mainLayout.css')?>" rel="stylesheet">
+    <link href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet">
 
   </head>
 

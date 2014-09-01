@@ -111,8 +111,8 @@ class ParseTCX
 			$lapEntry->distanceMeters = $lap->DistanceMeters;
 			$lapEntry->maximumSpeed = $lap->MaximumSpeed;
 			$lapEntry->calories = $lap->Calories;
-			$lapEntry->averageHeartRateBpm = $lap->AverageHeartRateBpm;
-			$lapEntry->maximumHeartRateBpm = $lap->MaximumHeartRateBpm;
+			$lapEntry->averageHeartRateBpm = $lap->AverageHeartRateBpm->Value;
+			$lapEntry->maximumHeartRateBpm = $lap->MaximumHeartRateBpm->Value;
 			$lapEntry->intensity = $lap->Intensity;
 			$lapEntry->TriggerMethod = $lap->TriggerMethod;
 			$lapEntry->save();
@@ -124,7 +124,7 @@ class ParseTCX
 				{
 					$trackpointEntry = new Trackpoint;
 					$trackpointEntry->time  = $trackpoint->Time ;
-					$trackpointEntry->latitudeDegrees  = $trackpoint->Positiion->LatitudeDegrees ;
+					$trackpointEntry->latitudeDegrees  = $trackpoint->Position->LatitudeDegrees ;
 					$trackpointEntry->longitudeDegrees  = $trackpoint->Position->LongitudeDegrees ;
 					$trackpointEntry->altitudeMeters  = $trackpoint->AltitudeMeters ;
 					$trackpointEntry->distanceMeters  = $trackpoint->DistanceMeters ;
