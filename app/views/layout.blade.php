@@ -13,6 +13,7 @@
     <link href="<?PHP echo asset('css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?PHP echo asset('css/navbar.css')?>" rel="stylesheet">
     <link href="<?PHP echo asset('css/progressBar.css')?>" rel="stylesheet">
+    <link href="<?PHP echo asset('css/mainLayout.css')?>" rel="stylesheet">
 
   </head>
 
