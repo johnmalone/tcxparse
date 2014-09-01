@@ -60,7 +60,6 @@ class ParseTCX
 
 	public function fire($job, $data)
 	{
-		Log::debug($data);
 		$unsavedActivity = UnsavedActivity::find($data['unsavedActivity_id']);
 		if (! $unsavedActivity)
 		{
@@ -92,7 +91,6 @@ class ParseTCX
 	
 	private function parseActivityXMLForUser($unsavedActivityEntry, $userEntry)
 	{
-		Log::debug('Parsing unsaved activity: ' . $unsavedActivityEntry->id);
 
 		$activityXML = new SimpleXMLElement($unsavedActivityEntry->activityXML);
 		
@@ -140,7 +138,7 @@ class ParseTCX
 		$uploadParsingEntry = UploadParsing::find($unsavedActivityEntry->uploadParsing_id);
 		$uploadParsingEntry->completedActivitiesCount++;
 		
-		if ($uploadParsingEntry->completeActivitiesCount == $uploadParsingEntry->totalActivitiesCount)
+		if ($uploadParsingEntry->completedActivitiesCount == $uploadParsingEntry->totalActivitiesCount)
 			$uploadParsingEntry->delete();
 		else
 			$uploadParsingEntry->save();

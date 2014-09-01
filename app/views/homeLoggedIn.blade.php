@@ -12,8 +12,8 @@
 @endif
 
 
-<div class="pbarContainer"><div class="progressbar"></div></div>
-
+<div class="pbarContainer" style="display:none;" ><div class="progressbar"></div></div>
+<script> var doUploadProgress = true; </script>
 You're Logged In! 
 
 Fancy dashboard goes here

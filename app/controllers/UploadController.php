@@ -23,7 +23,10 @@ class UploadController extends BaseController
 	{
 		$uploadParsingEntries = UploadParsing::where('user_id', '=', Auth::id())->get();
 		if (! $uploadParsingEntries)
-			return 0;
+			return 'n';
+
+		if ( $uploadParsingEntries->count() == 0)
+			return 'n';
 
 		$total = 0;
 		$done = 0;
