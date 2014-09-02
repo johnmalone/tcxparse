@@ -14,4 +14,14 @@ class ActivitysParsedExtras extends Eloquent {
 	{
 		return $this->hasOne('Activity');
 	}
+
+	public static function validate($input)
+	{
+		$rules = array(
+			'id' => 'Integer',
+		);
+
+		$v = Validator::make($input, $rules);
+		return $v->passes();
+	}
 }

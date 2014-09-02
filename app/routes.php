@@ -28,3 +28,6 @@ Route::get('upload', array('before' => 'auth', 'uses' => 'UploadController@showU
 Route::post('upload', array('before' => 'auth', 'uses' => 'UploadController@doUpload'));
 
 Route::get('uploadProgress', array('before' => 'auth', 'uses' => 'UploadController@getUploadProgress'));
+
+Route::get('parsedActivityData/{id}/{type}', array('before' => 'auth', 'uses' => 'ParsedActivityDataController@getAjaxData'));
+

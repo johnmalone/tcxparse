@@ -180,7 +180,7 @@ class ParseTCX
 		unset($lap);
 		unset($trackpoint);
 
-		fwrite($tmpFileHandle, 'var track = [ ');
+		fwrite($tmpFileHandle, 'window.track_'.$activity_id.' = [ ');
 		$comma = '';
 
 		for($i = 0; $i < $leafletCount; $i++)
@@ -193,7 +193,6 @@ class ParseTCX
 		rewind($tmpFileHandle);
 		$fileStats =fstat($tmpFileHandle);
 		$leafletJSLatLongArray = fread($tmpFileHandle, $fileStats['size']+10);
-		Log::debug($leafletJSLatLongArray);
 		$activityParsedExtras = new ActivitysParsedExtras();
 		$activityParsedExtras->leafletJSLatLongArray = $leafletJSLatLongArray;
 		$activityParsedExtras->activity_id = $activity_id;

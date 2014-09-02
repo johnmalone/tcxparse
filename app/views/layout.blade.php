@@ -15,6 +15,8 @@
     <link href="<?PHP echo asset('css/progressBar.css')?>" rel="stylesheet">
     <link href="<?PHP echo asset('css/mainLayout.css')?>" rel="stylesheet">
     <link href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" rel="stylesheet">
+    <script src="<?PHP echo asset('js/jquery-1.11.1.min.js');?>"></script>
+    <script src="<?PHP echo asset('js/bootstrap.min.js');?>"></script>
 
   </head>
 
@@ -74,8 +76,6 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<?PHP echo asset('js/jquery-1.11.1.min.js');?>"></script>
-    <script src="<?PHP echo asset('js/bootstrap.min.js');?>"></script>
 <?PHP
 	if (Auth::check())
 		echo '<script src="' . asset('js/progressBar.js') . '"></script>';

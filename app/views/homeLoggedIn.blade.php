@@ -17,7 +17,7 @@
 			<script>doUploadProgress = true;</script>
 		</div>
 	</div>
-
+<script>var idsToLoad = new Array();</script>
 	</div>
 	<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 		<h1 class="page-header"> TCX Parser </h1>
@@ -38,7 +38,7 @@
 				echo '<div class="row">';
 				
 				echo '<div class="col-xs-2">';
-				echo '<div id="map_825" style="height:256px;width:256px;">';
+				echo '<div id="map_'.$activity->id.'" style="height:256px;width:256px;">';
 				echo '</div>';
 				
 				echo '<div class="col-xs-10">';
@@ -52,6 +52,11 @@
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
+				echo '</div>';
+
+				echo '<script>';
+				echo 'idsToLoad.push('.$activity->id.');';
+				echo '</script>';
 			}
 
 		?>
@@ -65,16 +70,10 @@
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="<?PHP echo asset('js/maps.js');?>"></script>
 <script>
-
-
-
-<?PHP
-foreach ($activities as $activity)
+var arrayLength = idsToLoad.length;
+for(var i=0; i< arrayLength; i++)
 {
-	if ($activity->activitysParsedExtras)
-		echo $activity->activitysParsedExtras->leafletJSLatLongArray;
-	break;
-	//echo $extras->leafletJSLatLongArray;
+	getAndLoadLatLongData(idsToLoad[i]);
 }
 /*
 $points = array();
@@ -105,14 +104,9 @@ $allActivities->each(function($activity){
 		Log::debug($oneLap);
 	});
 });
-echo '<script>'.$oneLap.'</script>';
 */
-?>
 
-initmap();
 
-var polyline = L.polyline(track,{color:'red'}).addTo(map);
-map.fitBounds(polyline.getBounds());
 </script>
 @stop
 
