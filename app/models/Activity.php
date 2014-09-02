@@ -25,4 +25,10 @@ class Activity extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsTo('User');
 	}
+	
+	public function activitysParsedExtras()
+	{
+		return $this->hasOne('ActivitysParsedExtras');
+	}
+
 }

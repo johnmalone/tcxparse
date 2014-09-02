@@ -135,6 +135,8 @@ class ParseTCX
 			}
 		}
 		
+		$this->saveParsedExtras($activityID);
+
 		$uploadParsingEntry = UploadParsing::find($unsavedActivityEntry->uploadParsing_id);
 		$uploadParsingEntry->completedActivitiesCount++;
 		
@@ -144,5 +146,59 @@ class ParseTCX
 			$uploadParsingEntry->save();
 
 		return TRUE;
+	}
+
+	protected function saveParsedExtras($activity_id)
+	{
+		// likely to be MEAN on memory
+		ini_set('memory_limit', '2G');
+		DB::connection()->disableQueryLog();
+
+		$activity = Activity::find($activity_id);
+
+		$leafletJSLatLongArray = '';
+		$jsHRArray = '';
+		$jsAltArray = '';
+		$jsCadenceArray = '';
+		$leafletCount = 0;
+		$tmpFileHandle = tmpfile();
+		ob_start();
+		foreach ($activity->laps as $lap)
+		{
+			foreach ($lap->trackpoints as $trackpoint)
+			{
+				if ($trackpoint->latitudeDegrees and $trackpoint->longitudeDegrees)
+				{
+					fwrite($tmpFileHandle, 'var l'.$leafletCount.' = L.latLng(');
+					fwrite($tmpFileHandle, $trackpoint->latitudeDegrees . ',');
+					fwrite($tmpFileHandle, $trackpoint->longitudeDegrees . ');');
+					$leafletCount++;
+				}
+			}
+		}
+		unset($activity);
+		unset($lap);
+		unset($trackpoint);
+
+		fwrite($tmpFileHandle, 'var track = [ ');
+		$comma = '';
+
+		for($i = 0; $i < $leafletCount; $i++)
+		{
+			fwrite($tmpFileHandle, $comma . 'l'.$i);
+			$comma = ',';
+		}
+
+		fwrite($tmpFileHandle, "];\n");
+		rewind($tmpFileHandle);
+		$fileStats =fstat($tmpFileHandle);
+		$leafletJSLatLongArray = fread($tmpFileHandle, $fileStats['size']+10);
+		Log::debug($leafletJSLatLongArray);
+		$activityParsedExtras = new ActivitysParsedExtras();
+		$activityParsedExtras->leafletJSLatLongArray = $leafletJSLatLongArray;
+		$activityParsedExtras->activity_id = $activity_id;
+
+		$activityParsedExtras->save();
+
 	}
 }

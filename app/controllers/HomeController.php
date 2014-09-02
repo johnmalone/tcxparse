@@ -7,10 +7,10 @@ class HomeController extends BaseController
 		if (! Auth::check())
 			return View::make('home');
 
-
 		$allActivities = Activity::where('user_id', '=', Auth::id())->orderBy('activityId', 'desc')->paginate(10);
-		$data = array('activities', $allActivities);
-		return View::make('homeLoggedIn',compact('allActivities') )->nest('progressBar', 'fragment.uploadProgressBar');
+
+		$data = array('activities' => $allActivities );
+		return View::make('homeLoggedIn',$data )->nest('progressBar', 'fragment.uploadProgressBar');
 	}
 	
 	public function showLogin()

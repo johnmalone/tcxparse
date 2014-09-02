@@ -8,7 +8,6 @@ $baseDir = dirname($vendorDir);
 return array(
     'Activity' => $baseDir . '/app/models/Activity.php',
     'ActivityTableSeeder' => $baseDir . '/app/database/seeds/ActivityTableSeeder.php',
-    'AddRelationshipToUnsavedActivities' => $baseDir . '/app/database/migrations/2014_08_31_144218_add_relationshipToUnsavedActivities.php',
     'AddUsertypeToUsersTable' => $baseDir . '/app/database/migrations/2014_08_30_090257_add_usertype_to_users_table.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'Boris\\Boris' => $vendorDir . '/d11wtq/boris/lib/Boris/Boris.php',
@@ -32,6 +31,7 @@ return array(
     'ClassPreloader\\Parser\\DirVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/DirVisitor.php',
     'ClassPreloader\\Parser\\FileVisitor' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/FileVisitor.php',
     'ClassPreloader\\Parser\\NodeTraverser' => $vendorDir . '/classpreloader/classpreloader/src/ClassPreloader/Parser/NodeTraverser.php',
+    'CreateActivitiesParsedExtras' => $baseDir . '/app/database/migrations/2014_09_02_165736_create_activitiesParsedExtras.php',
     'CreateActivitysTable' => $baseDir . '/app/database/migrations/2014_08_30_113109_create_activitys_table.php',
     'CreateLapsTable' => $baseDir . '/app/database/migrations/2014_08_30_114544_create_Laps_table.php',
     'CreateTrackpointsTable' => $baseDir . '/app/database/migrations/2014_08_30_120434_create_Trackpoints_table.php',
