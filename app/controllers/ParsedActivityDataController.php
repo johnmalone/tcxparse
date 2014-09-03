@@ -13,14 +13,23 @@ class ParsedActivityDataController extends BaseController
 				if (ActivitysParsedExtras::validate(array('id'=> $id)))
 				{
 					$activitiesParsedExtras = ActivitysParsedExtras::where('activity_id', '=', $id)->get()->first();
-					if ($activitiesParsedExtras)
-						return $activitiesParsedExtras->leafletJSLatLongArray;
+					if (! $activitiesParsedExtras)
+						return '{}';
+					$coordArray = $activitiesParsedExtras->jsonCoordArray;
 
+					$geoJson = '{"type": "FeatureCollection",'.
+						'"features": [ '.
+							' { "type" : "Feature",'.
+							'"properties" : { "activity_id" : "'.$id.'" },'.
+							'"geometry":{ "type" : "LineString",'.
+								'"coordinates": '. $coordArray.
+							'}}]}';
+					return $geoJson;
 				}
 				break;
 			default:
-				return 'var track_' . $id . ' = []';
+				return '{}';
 		}
-		return 'var track_' . $id . ' = []';
+		return '{}';
 	}
 }

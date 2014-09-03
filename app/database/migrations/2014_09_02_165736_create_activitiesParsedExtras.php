@@ -18,10 +18,10 @@ class CreateActivitiesParsedExtras extends Migration {
 
 			$table->integer('activity_id');
 
-			$table->longtext('leafletJSLatLongArray')->nullable();
-			$table->text('jsHRArray')->nullable();
-			$table->text('jsAltArray')->nullable();
-			$table->text('jsCadenceArray')->nullable();
+			$table->longtext('jsonCoordArray')->nullable();
+			$table->longtext('jsHRArray')->nullable();
+			$table->longtext('jsAltArray')->nullable();
+			$table->longtext('jsCadenceArray')->nullable();
 			$table->timestamps();
 		});
 	}

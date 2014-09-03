@@ -4,7 +4,7 @@ var plotlist;
 var plotlayers=[];
 function initmap(id) {
 	// set up the map
-	map[id] = new L.Map('map_'+id);
+	map[id] = new L.Map('map_'+id, null, { zoomControl:false });
 
 	// create the tile layer with correct attribution
 	var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -12,26 +12,26 @@ function initmap(id) {
 	var osm = new L.TileLayer(osmUrl, {minZoom: 8, maxZoom: 12, attribution: osmAttrib});		
 
 	// start the map in South-East England
-	map[id].setView(new L.LatLng(53.3, -6.20),9);
+	
 	map[id].addLayer(osm);
 }
 
 function getAndLoadLatLongData(id)
 {
-	$.ajax({
-		type: "GET",
-		url : "/parsedActivityData/"+id+"/leafletJSLatLong",
-		success : function(data){
+	$.getJSON(
+		"/parsedActivityData/"+id+"/leafletJSLatLong",
+		function(geoJsonData){
 			initmap(id);
-			eval(data);
-			eval("var thisTrack = track_" + id );
-			if (thisTrack.length != 0)
+
+			console.log(geoJsonData);
+			if (Object.keys(geoJsonData).length != 0)
 			{
-				var polyline = L.polyline(thisTrack,{color:'red'}).addTo(map[id]);
-				map[id].fitBounds(polyline.getBounds());
+				var geoJson = L.geoJson(geoJsonData);
+				map[id].fitBounds(geoJson.getBounds());
+				geoJson.addTo(map[id]);
 			}
 
 		}
-	},"script");
+	);
 
 }
