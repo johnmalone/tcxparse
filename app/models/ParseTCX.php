@@ -154,8 +154,22 @@ class ParseTCX
 		DB::connection()->disableQueryLog();
 
 		$activity = Activity::find($activity_id);
+		
+		$jsonCoords = $this->saveJsonCoordArray($activity);
+		
+		$jsonGoogAlt = $this->saveGoogJsAltArray($activity);
+		
+		$activityParsedExtras = new ActivitysParsedExtras();
+		$activityParsedExtras->jsonCoordArray = $jsonCoords;
+		$activityParsedExtras->jsAltArray = $jsonGoogAlt;
+		$activityParsedExtras->activity_id = $activity_id;
 
+		$activityParsedExtras->save();
 
+	}
+
+	private function saveJsonCoordArray($activity)
+	{
 		// points from different laps in the one activity are merged into one track
 		$coordArray = array();
 		foreach ($activity->laps as $lap)
@@ -163,12 +177,43 @@ class ParseTCX
 				if ($trackpoint->latitudeDegrees and $trackpoint->longitudeDegrees)
 					$coordArray[] = array($trackpoint->longitudeDegrees, $trackpoint->latitudeDegrees );
 		$jsonCoords = json_encode($coordArray, JSON_NUMERIC_CHECK);
+		
+		return $jsonCoords;
 
-		$activityParsedExtras = new ActivitysParsedExtras();
-		$activityParsedExtras->jsonCoordArray = $jsonCoords;
-		$activityParsedExtras->activity_id = $activity_id;
+	}
 
-		$activityParsedExtras->save();
 
+	private function saveGoogJsAltArray($activity)
+	{
+		// manually building json string as require date obj
+		// not sure how to build unquoted strings using json_encode()
+		
+
+		//$timeCol = array('id' => 'time','label'=>'Time', 'type'=> 'date');
+		$distCol = array('id' => 'dist','label'=>'Distance', 'type'=> 'number');
+		$altCol  = array('id' => 'alt', 'label'=>'Altitude', 'type'=> 'number');
+		
+		$cols = array($distCol, $altCol);
+		
+		$rows = array();
+		foreach ($activity->laps as $lap)
+		{
+			foreach ($lap->trackpoints as $trackpoint)
+			{
+				if ($trackpoint->latitudeDegrees and $trackpoint->longitudeDegrees)
+				{
+					$dateBits = preg_split("@[- :]@", $trackpoint->time);
+				//	$timeCell = array('v' => 'Date('.$dateBits[0].','.$dateBits[1].','.$dateBits[2].','.$dateBits[3].','.$dateBits[4].','.$dateBits[5].')',
+				//			'f' => $dateBits[3].':'.$dateBits[4].':'.$dateBits[5]);
+					$distCell = array('v' =>  round($trackpoint->distanceMeters/1000,2), 'f' => round($trackpoint->distanceMeters / 1000,2) . 'KM');
+					$altCell = array('v' =>$trackpoint->altitudeMeters, 'f' => number_format($trackpoint->altitudeMeters).'M');
+					$rows[] = array('c' => array($distCell, $altCell));
+				}
+			}
+		}
+		
+		$jsonString = json_encode(array("cols" => $cols, "rows" => $rows));
+		
+		return $jsonString;
 	}
 }

@@ -37,19 +37,15 @@
 				echo '<div class="panel-body">';
 				echo '<div class="row">';
 				
-				echo '<div class="col-xs-2">';
+				echo '<div class="col-xs-4">';
 				echo '<div id="map_'.$activity->id.'" style="height:256px;width:256px;">';
 				echo '</div>';
+				echo '</div>';
 				
-				echo '<div class="col-xs-10">';
-				foreach ($activity->laps as $lap)
-				{
-					echo 'Distance: ' . $lap->distanceMeters . '<br/>';
-					echo 'Avg Hr: ' . $lap->averageHeartRateBpm . '<br/>';
-				}
+				echo '<div class="col-xs-8">';
+				echo '<div id="alt_chart_'.$activity->id.'"></div>';
 				echo '</div>';
 
-				echo '</div>';
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
@@ -67,46 +63,18 @@
 </div>
 </div>
 
+
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="<?PHP echo asset('js/maps.js');?>"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="<?PHP echo asset('js/gcharts.js');?>"></script>
 <script>
 var arrayLength = idsToLoad.length;
 for(var i=0; i< arrayLength; i++)
 {
 	getAndLoadLatLongData(idsToLoad[i]);
+	drawAltChartForActivity(idsToLoad[i]);
 }
-/*
-$points = array();
-$oneLap = '';
-$allActivities->each(function($activity){
-	$laps = $activity->laps;
-	$laps->each(function($lap){
-		global $oneLap;
-		$count = 0;
-		$trackpoints = $lap->trackpoints;
-		$allTrackPoints = $trackpoints->all();
-		foreach ($allTrackPoints as $trackpoint)
-		{
-			if ($trackpoint->latitudeDegrees and $trackpoint->longitudeDegrees)
-			{
-				$oneLap .= 'var l'.$count.'  = L.latLng('.$trackpoint->latitudeDegrees. ',' . $trackpoint->longitudeDegrees . ");\n";
-				$count++;
-			}
-		}
-		$oneLap .= 'var track = [ ';
-		$comma = '';
-		for ($i=0;$i<$count; $i++)
-		{
-			$oneLap .= $comma. 'l'.$i ;
-			$comma = ',';
-		}
-		$oneLap .= '];';
-		Log::debug($oneLap);
-	});
-});
-*/
-
-
 </script>
 @stop
 

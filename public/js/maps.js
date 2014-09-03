@@ -23,7 +23,6 @@ function getAndLoadLatLongData(id)
 		function(geoJsonData){
 			initmap(id);
 
-			console.log(geoJsonData);
 			if (Object.keys(geoJsonData).length != 0)
 			{
 				var geoJson = L.geoJson(geoJsonData);

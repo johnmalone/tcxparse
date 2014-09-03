@@ -27,6 +27,20 @@ class ParsedActivityDataController extends BaseController
 					return $geoJson;
 				}
 				break;
+			case 'googChartAlt':
+				if (ActivitysParsedExtras::validate(array('id'=> $id)))
+				{
+					$activitiesParsedExtras = ActivitysParsedExtras::where('activity_id', '=', $id)->get()->first();
+					if (! $activitiesParsedExtras)
+						return '{}';
+					$jsAltArray = $activitiesParsedExtras->jsAltArray;
+
+					return $jsAltArray;
+				}
+
+
+				break;
+	
 			default:
 				return '{}';
 		}
