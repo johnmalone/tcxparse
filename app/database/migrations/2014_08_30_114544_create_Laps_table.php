@@ -17,18 +17,18 @@ class CreateLapsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('activity_id');
+			$table->integer('activity_id')->nullable();
 
 			$table->dateTime('startTime');
 
-			$table->string('totalTimeSeconds', 15);
-			$table->string('distanceMeters', 15);
-			$table->string('maximumSpeed', 15);
-			$table->string('calories', 15);
-			$table->string('averageHeartRateBpm', 15);
-			$table->string('maximumHeartRateBpm', 15);
-			$table->string('intensity', 15);
-			$table->string('triggerMethod', 15);
+			$table->string('totalTimeSeconds', 15)->nullable();
+			$table->string('distanceMeters', 15)->nullable();
+			$table->string('maximumSpeed', 15)->nullable();
+			$table->string('calories', 15)->nullable();
+			$table->string('averageHeartRateBpm', 15)->nullable();
+			$table->string('maximumHeartRateBpm', 15)->nullable();
+			$table->string('intensity', 15)->nullable();
+			$table->string('triggerMethod', 15)->nullable();
 
 			$table->timestamps();
 		});

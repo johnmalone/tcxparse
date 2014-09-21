@@ -16,7 +16,7 @@ class CreateTrackpointsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('lap_id');
+			$table->integer('lap_id')->nullable();
 
 			$table->dateTime('time');
 

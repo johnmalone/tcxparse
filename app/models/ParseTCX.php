@@ -23,7 +23,7 @@ class ParseTCX
 		}
 		
 		$uploadParsing = UploadParsing::create(array(
-			'completeActivitiesCount' => 0,
+			'completedActivitiesCount' => 0,
 			'allActivitiesInDb' => 'n',
 		));
 		Auth::user()->uploadParsing()->save($uploadParsing);
@@ -45,8 +45,8 @@ class ParseTCX
 							));
 
 				Auth::user()->unsavedActivitys()->save($unsavedActivity);
-
-				$data = array('user_id' => Auth::id(), 'unsavedActivity_id' => $unsavedActivity->id);
+				$user_id = Auth::user()->id;
+				$data = array('user_id' => $user_id, 'unsavedActivity_id' => $unsavedActivity->id);
 				Queue::push('ParseTCX', $data);
 			}
 		}

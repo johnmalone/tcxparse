@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/ProfileExtension/v1 http://www.garmin.com/xmlschemas/UserProfilePowerExtensionv1.xsd http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd http://www.garmin.com/xmlschemas/UserProfile/v2 http://www.garmin.com/xmlschemas/UserProfileExtensionv2.xsd">
+  <Activities>
+    <Activity Sport="Biking">
+      <Id>2014-05-31T08:50:56Z</Id>
+      <Lap StartTime="2014-05-31T08:50:56Z">
+        <TotalTimeSeconds>2029.38</TotalTimeSeconds>
+        <DistanceMeters>21.716528</DistanceMeters>
+        <MaximumSpeed>1.220000</MaximumSpeed>
+        <Calories>0</Calories>
+        <Intensity>Active</Intensity>
+        <Cadence>102</Cadence>
+        <TriggerMethod>Manual</TriggerMethod>
+        <Track>
+          <Trackpoint>
+            <Time>2014-05-31T08:50:56Z</Time>
+            <Position>
+              <LatitudeDegrees>54.763160</LatitudeDegrees>
+              <LongitudeDegrees>-8.527800</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>0.000</AltitudeMeters>
+            <DistanceMeters>0.120</DistanceMeters>
+            <Cadence>90</Cadence>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2014-05-31T09:24:38Z</Time>
+            <Position>
+              <LatitudeDegrees>54.763188</LatitudeDegrees>
+              <LongitudeDegrees>-8.527797</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>6.306</AltitudeMeters>
+            <DistanceMeters>17.968</DistanceMeters>
+          </Trackpoint>
+          <Trackpoint>
+            <Time>2014-05-31T09:24:44Z</Time>
+            <Position>
+              <LatitudeDegrees>54.763206</LatitudeDegrees>
+              <LongitudeDegrees>-8.527748</LongitudeDegrees>
+            </Position>
+            <AltitudeMeters>6.153</AltitudeMeters>
+            <DistanceMeters>21.717</DistanceMeters>
+          </Trackpoint>
+        </Track>
+      </Lap>
+      <Creator xsi:type="Device_t">
+        <Name>EDGE705</Name>
+        <UnitId>3467990641</UnitId>
+        <ProductID>625</ProductID>
+        <Version>
+          <VersionMajor>3</VersionMajor>
+          <VersionMinor>30</VersionMinor>
+          <BuildMajor>0</BuildMajor>
+          <BuildMinor>0</BuildMinor>
+        </Version>
+      </Creator>
+    </Activity>
+  </Activities>
+  <Author xsi:type="Application_t">
+    <Name>EDGE705</Name>
+    <Build>
+      <Version>
+        <VersionMajor>3</VersionMajor>
+        <VersionMinor>30</VersionMinor>
+        <BuildMajor>0</BuildMajor>
+        <BuildMinor>0</BuildMinor>
+      </Version>
+      <Type>Release</Type>
+    </Build>
+    <LangID>EN</LangID>
+    <PartNumber>006-B0625-00</PartNumber>
+  </Author>
+</TrainingCenterDatabase>

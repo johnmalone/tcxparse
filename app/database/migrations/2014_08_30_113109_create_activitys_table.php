@@ -16,7 +16,7 @@ class CreateActivitysTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('user_id');
+			$table->integer('user_id')->nullable();
 
 			$table->dateTime('activityId');
 			$table->string('sport', 30);

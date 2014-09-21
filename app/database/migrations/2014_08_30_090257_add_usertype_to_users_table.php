@@ -13,7 +13,7 @@ class AddUsertypeToUsersTable extends Migration {
 	public function up()
 	{
 		Schema::table('users', function($t) {
-			$t->enum('usertype', array('admin', 'normal'));
+			$t->enum('usertype', array('admin', 'normal'))->default('normal');
 		});
 	}
 

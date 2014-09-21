@@ -16,7 +16,7 @@ class CreateUploadParsingTable extends Migration {
 		Schema::create('uploadParsing', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('user_id');
+			$table->integer('user_id')->nullable();
 			$table->integer('totalActivitiesCount')->default(0);
 			$table->integer('completedActivitiesCount')->default(0);
 			$table->enum('allActivitiesInDb', array('y','n'))->default('n');
